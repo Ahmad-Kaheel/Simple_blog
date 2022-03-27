@@ -13,10 +13,18 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from distutils.command.build import build
 from pathlib import Path
 import os 
+import django_heroku
+import dotenv
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().root.root 
 
-
+dotenv_file = os.path.join(BASE_DIR, ".env.MY_DATABASE_URL")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
+    
+    
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -26,7 +34,7 @@ SECRET_KEY = 'django-insecure-l-_lzjw2btw*&v^v7^fes6h&!#lbl&=4(-%v_i4jgpe-%neygg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -168,4 +176,5 @@ REST_FRAMEWORK = {
     ]
 }
 
-DATE_INPUT_FORMATS = ['%d %b %Y'] # Changing date format into "25 Oct 2006"
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
