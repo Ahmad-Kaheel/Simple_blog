@@ -160,7 +160,7 @@ STATICFILES_DIR = [
     os.path.join(BASE_DIR, 'build/static') # for static files collected in reactjs
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # for static files collected in django
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # for static files collected in django
 
 # Media path
 MEDIA_URL = '/media/'
