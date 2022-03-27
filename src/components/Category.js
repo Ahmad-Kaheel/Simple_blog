@@ -3,6 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import {capitalizeFirstLetter} from '../myTools/Mixed';
 import axios from "axios";
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 const Category = () => {
     const [blog, setBlogs] = useState([]);
     const [currentCategory, setCurrentCategory] = useState('');

@@ -18,9 +18,9 @@ import dotenv
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().root.root 
+BASE_DIR = Path(__file__).resolve().root 
 
-dotenv_file = os.path.join(BASE_DIR, ".env.MY_DATABASE_URL")
+dotenv_file = os.path.join(BASE_DIR, ".env.development")
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
     
@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-l-_lzjw2btw*&v^v7^fes6h&!#lbl&=4(-%v_i4jgpe-%neygg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['aroundtheword.herokuapp.com','127.0.0.1:8000', 'localhost']
 
 
 # Application definition
@@ -61,6 +61,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     # Default middleware:
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -71,6 +72,8 @@ MIDDLEWARE = [
     # Third party MiddleWare:
     'corsheaders.middleware.CorsMiddleware', #To allow access to the API "CORS"
 ]
+# compress files
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" 
 
 CORS_ORIGIN_ALLOW_ALL = True # Allow access for all domains "CORS"
 
@@ -100,15 +103,17 @@ WSGI_APPLICATION = 'blog_lyfe.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myDjangoDB',
-        'USER' : 'postgres',
-        'PASSWORD' : 'admin',
-        'HOST' : 'localhost',
-        'PORT' : '5433',
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'myDjangoDB',
+    #     'USER' : 'postgres',
+    #     'PASSWORD' : 'admin',
+    #     'HOST' : 'localhost',
+    #     'PORT' : '5433',
+    # }
 }
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
 
 
 # Password validation
@@ -152,8 +157,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIR = [
     #After running npm run build we will get 'build' folder and we 
     # are going to have a static folder there 
-    os.path.join(BASE_DIR, 'build/static') 
+    os.path.join(BASE_DIR, 'build/static') # for static files collected in reactjs
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # for static files collected in django
 
 # Media path
 MEDIA_URL = '/media/'
@@ -178,3 +185,7 @@ REST_FRAMEWORK = {
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals())
+
+# Add these at the very last line of settings.py to fix ssl problem if it happened 
+# options = DATABASES['default'].get('OPTIONS', {})
+# options.pop('sslmode', None)

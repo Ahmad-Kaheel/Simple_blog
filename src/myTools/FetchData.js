@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 // Fetch the first row data of the table from database
 export const getFirsthData = async (link_of_env, rest_of_link, set_data) => {
 
