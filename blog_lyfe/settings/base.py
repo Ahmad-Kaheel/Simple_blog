@@ -17,9 +17,10 @@ import django_heroku
 import dotenv
 import dj_database_url
 from decouple import config
+from dotenv import load_dotenv, find_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().root 
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 dotenv_file = os.path.join(BASE_DIR, ".env.development")
 if os.path.isfile(dotenv_file):
@@ -29,14 +30,6 @@ if os.path.isfile(dotenv_file):
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l-_lzjw2btw*&v^v7^fes6h&!#lbl&=4(-%v_i4jgpe-%neygg'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['aroundtheword.herokuapp.com','127.0.0.1:8000', 'localhost']
-
 
 # Application definition
 
@@ -45,7 +38,7 @@ INSTALLED_APPS = [
     'blog',
     
     # Third party Apps:
-    'django-extensions' # For generate a secret key
+    'django-extensions' # To generate a secret key
     'storages' # For AWS 
     'rest_framework',
     'corsheaders',# For API issues 
@@ -105,18 +98,17 @@ WSGI_APPLICATION = 'blog_lyfe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'myDjangoDB',
-#         'USER' : 'postgres',
-#         'PASSWORD' : 'admin',
-#         'HOST' : 'localhost',
-#         'PORT' : '5433',
-#     }
-# }
-
-DATABASES = {'default': dj_database_url.config(default='sqlite:///db.sqlite3', conn_max_age=600)} 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'myDjangoDB',
+        'USER' : 'postgres',
+        'PASSWORD' : 'admin',
+        'HOST' : 'localhost',
+        'PORT' : '5433',
+    }
+}
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
 
