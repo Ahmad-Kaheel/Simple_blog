@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from msilib.schema import Environment
+# from msilib.schema import Environment
 from django.db import models
 from django.utils.text import slugify
 # Create your models here.
