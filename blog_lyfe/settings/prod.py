@@ -83,4 +83,4 @@ LOGGING = {
 
 #------------------------Heroku settings--------------------------------------------
 django_on_heroku.settings(locals(), staticfiles=False)
-del DATABASES['default']['options']['sslmode'] # To remove all mistakes in database 
+del DATABASES['default']['sslmode'] # To remove all mistakes in database 
