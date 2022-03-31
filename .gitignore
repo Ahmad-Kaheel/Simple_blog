@@ -167,4 +167,4 @@ cython_debug/
 /node_modules
 venv
 .env.development
-
+db.sqlite3
