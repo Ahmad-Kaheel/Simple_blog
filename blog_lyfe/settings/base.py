@@ -32,7 +32,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 
-# Application definition
+# Application definition 
 
 INSTALLED_APPS = [
     # Our Apps: 
