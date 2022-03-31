@@ -10,21 +10,22 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from distutils.command.build import build
+# from distutils.command.build import build
 from pathlib import Path
-import os 
-import django_heroku
-import dotenv
-import dj_database_url
-from decouple import config
+import os
+# from django import conf 
+# import django_heroku
+# import dotenv
+import dj_database_url # To connect into database on Heroku
+# from decouple import config
 from dotenv import load_dotenv, find_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().root
 
-dotenv_file = os.path.join(BASE_DIR, ".env.development")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+# dotenv_file = os.path.join(BASE_DIR, ".env.development")
+# if os.path.isfile(dotenv_file):
+#     dotenv.load_dotenv(dotenv_file)
     
     
 # Quick-start development settings - unsuitable for production
@@ -38,8 +39,8 @@ INSTALLED_APPS = [
     'blog',
     
     # Third party Apps:
-    'django-extensions' # To generate a secret key
-    'storages' # For AWS 
+    'django_extensions', # To generate a secret key
+    'storages', # For AWS 
     'rest_framework',
     'corsheaders',# For API issues 
     'django_summernote',
@@ -98,17 +99,22 @@ WSGI_APPLICATION = 'blog_lyfe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'myDjangoDB',
-        'USER' : 'postgres',
-        'PASSWORD' : 'admin',
-        'HOST' : 'localhost',
-        'PORT' : '5433',
-    }
-}
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'myDjangoDB',
+#         'USER' : 'postgres',
+#         'PASSWORD' : 'admin',
+#         'HOST' : 'localhost',
+#         'PORT' : '5433',
+#     }
+# }
+
+# To find a dot env file if you use , otherwise to load environment variables into your codes
+load_dotenv(find_dotenv()) 
+
+
+DATABASES = {'default': dj_database_url.config(default='sqlite:///db.sqlite3' ,  conn_max_age=600)}
 
 
 
@@ -144,11 +150,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/' 
+# STATIC_URL = '/static/' 
+
 
 STATICFILES_DIR = [
     #After running npm run build we will get 'build' folder and we 
@@ -158,30 +166,29 @@ STATICFILES_DIR = [
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # for static files collected in django
 
-# Media path
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+# # Media path
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Add Rest Framework settings
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
+# REST_FRAMEWORK = {
+#     # Use Django's standard `django.contrib.auth` permissions,
+#     # or allow read-only access for unauthenticated users.
     
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
         
-    ]
-}
+#     ]
+# }
 
-# Configure Django App for Heroku.
-django_heroku.settings(locals())
+# # Configure Django App for Heroku.
+# django_heroku.settings(locals())
 
-# Add these at the very last line of settings.py to fix ssl problem if it happened 
+# # Add these at the very last line of settings.py to fix ssl problem if it happened 
 # options = DATABASES['default'].get('OPTIONS', {})
 # options.pop('sslmode', None)
