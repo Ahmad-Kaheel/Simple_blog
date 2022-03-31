@@ -83,5 +83,5 @@ LOGGING = {
 
 #------------------------Heroku settings--------------------------------------------
 django_on_heroku.settings(locals(), staticfiles=False) # To make heroku not take care of serving staticfiles
-# del DATABASES['default'] # To remove all mistakes in database 
+del DATABASES['default']['OPTIONS']['sslmode'] # To remove all mistakes in database 
 DATABASES['default']= dj_database_url.config()
