@@ -21,7 +21,7 @@ import dj_database_url # To connect into database on Heroku
 from dotenv import load_dotenv, find_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().root
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # dotenv_file = os.path.join(BASE_DIR, ".env.development")
 # if os.path.isfile(dotenv_file):
