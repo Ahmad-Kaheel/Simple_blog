@@ -78,6 +78,7 @@ const Blog = () => {
             </div>
             {getBlogs()}
         </div>
+    
     );
 };
 export default Blog;
