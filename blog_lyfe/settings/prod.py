@@ -84,3 +84,8 @@ LOGGING = {
 #------------------------Heroku settings--------------------------------------------
 django_on_heroku.settings(locals(), staticfiles=False) # To make heroku not take care of serving staticfiles
 del DATABASES['default']['OPTIONS']['sslmode'] # To remove all mistakes in database
+
+#--------------------test-------------------
+import mimetypes
+
+mimetypes.add_type("text/javascript", ".js", True)
