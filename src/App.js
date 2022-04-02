@@ -1,11 +1,11 @@
-import { BrowserRouter as Router , Routes, Route } from "react-router-dom";
+import { HashRouter as Router , Routes, Route } from "react-router-dom";
 import Layout from './hocs/Layout';
 import Blog from './components/Blog';
 import BlogDetail from './components/BlogDetail';
 import Category from './components/Category';
 
 const App = () => (
-  <Router  basename={process.env.PUBLIC_URL} >
+  <Router >
     <Layout>
       <Routes>
         <Route exact path = '/' element = {<Blog/>} />
