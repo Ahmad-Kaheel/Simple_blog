@@ -5,7 +5,7 @@ import BlogDetail from './components/BlogDetail';
 import Category from './components/Category';
 
 const App = () => (
-  <Router   >
+  <Router  basename={process.env.PUBLIC_URL} >
     <Layout>
       <Routes>
         <Route exact path = '/' element = {<Blog/>} />
