@@ -1,8 +1,8 @@
 {
-  "root": "public",
+  "root": "build",
   "clean_urls": false,
   "error_page": "{ \"root\": \"public\", \"clean_urls\": false }",
   "routes": {
-    "/**": "src/App.js"
+    "/**": "App.js"
   }
 }
