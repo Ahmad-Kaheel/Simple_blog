@@ -5,7 +5,7 @@ import BlogDetail from './components/BlogDetail';
 import Category from './components/Category';
 
 const App = () => (
-  <Router basename={process.env.REACT_APP_API_URL} >
+  <Router  basename={process.env.PUBLIC_URL} >
     <Layout>
       <Routes>
         <Route exact path = '/' element = {<Blog/>} />
