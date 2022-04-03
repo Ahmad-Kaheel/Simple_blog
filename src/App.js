@@ -5,7 +5,7 @@ import BlogDetail from './components/BlogDetail';
 import Category from './components/Category';
 
 const App = () => (
-  <Router  basename="/" >
+  <Router basename="/" >
     <Layout>
       <Routes>
         <Route exact path = '/' element = {<Blog/>} />
