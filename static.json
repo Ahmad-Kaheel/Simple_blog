@@ -1,6 +1,11 @@
 {
   "root": "public",
   "clean_urls": false,
+  "buildpacks": [
+    {
+    "url": "mars/create-react-app"
+    }
+  ],
   "error_page": "{ \"root\": \"public\", \"clean_urls\": false }",
   "routes": {
     "/**": "index.html"
