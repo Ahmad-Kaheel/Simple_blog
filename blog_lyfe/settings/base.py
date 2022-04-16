@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django_extensions', # To generate a secret key
     'storages', # For AWS 
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
     'corsheaders',# For API issues 
     'django_summernote',
     
@@ -176,15 +178,15 @@ STATICFILES_DIR = [
 
 
 # Add Rest Framework settings
-# REST_FRAMEWORK = {
-#     # Use Django's standard `django.contrib.auth` permissions,
-#     # or allow read-only access for unauthenticated users.
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
     
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
         
-#     ]
-# }
+    ]
+}
 
 # # Configure Django App for Heroku.
 # django_heroku.settings(locals())
