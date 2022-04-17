@@ -69,4 +69,3 @@ webencodings==0.5.1
 whitenoise==6.0.0
 zipp==3.6.0
 pypiwin32==223
-pywin32==303
