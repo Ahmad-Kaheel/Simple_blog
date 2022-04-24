@@ -74,7 +74,7 @@ MIDDLEWARE = [
 # compress files
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" 
 
-CORS_ORIGIN_ALLOW_ALL = True # Allow access for all domains "CORS"
+CORS_ALLOWED_ORIGIN_REGEXES = True # Allow access for all domains "CORS"
 
 
 ROOT_URLCONF = 'blog_lyfe.urls'
