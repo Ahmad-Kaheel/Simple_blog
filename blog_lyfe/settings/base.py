@@ -10,30 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-# from distutils.command.build import build
 from pathlib import Path
 import os
-# from django import conf 
-# import django_heroku
-# import dotenv
 import dj_database_url # To connect into database on Heroku
-# from decouple import config
 from dotenv import load_dotenv, find_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# dotenv_file = os.path.join(BASE_DIR, ".env.development")
-# if os.path.isfile(dotenv_file):
-#     dotenv.load_dotenv(dotenv_file)
-    
-    
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-
 # Application definition 
-
 INSTALLED_APPS = [
     # Our Apps: 
     'blog',
@@ -97,21 +82,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'blog_lyfe.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'myDjangoDB',
-#         'USER' : 'postgres',
-#         'PASSWORD' : 'admin',
-#         'HOST' : 'localhost',
-#         'PORT' : '5433',
-#     }
-# }
-
 # To find a dot env file if you use , otherwise to load environment variables into your codes
 load_dotenv(find_dotenv()) 
 
@@ -154,55 +124,14 @@ USE_TZ = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-# STATIC_URL = '/static/' 
-
-
 STATICFILES_DIR = [
     #After running npm run build we will get 'build' folder and we 
     # are going to have a static folder there 
     os.path.join(BASE_DIR, 'build/static') # for static files collected in reactjs
 ]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # For static files collected in django
-
-# # Media path
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
-
-# Add Rest Framework settings
-# REST_FRAMEWORK = {
-#     # Use Django's standard `django.contrib.auth` permissions,
-#     # or allow read-only access for unauthenticated users.
-    
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework.authentication.TokenAuthentication',
-#     ),
-#     'DEFAULT_PERMISSION_CLASSES': [
-#         'rest_framework.permissions.IsAuthenticated',
-#     ]
-# }
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ]
 }
-
-# configure Djoser
-# DJOSER = {
-#     "USER_ID_FIELD": "username"
-# }
-
-# # Configure Django App for Heroku.
-# django_heroku.settings(locals())
-
-# # Add these at the very last line of settings.py to fix ssl problem if it happened 
-# options = DATABASES['default'].get('OPTIONS', {})
-# options.pop('sslmode', None) 

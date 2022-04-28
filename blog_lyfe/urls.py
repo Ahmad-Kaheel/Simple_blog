@@ -20,12 +20,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
-# from rest_framework import routers
-# from blog.views import BlogPostListView
-
-# router = routers.DefaultRouter()
-# router.register(r'BlogPost', BlogPostListView , 'blog' )
-
 urlpatterns = [
     #My URLs
     path('api/blog/', include('blog.urls')),
