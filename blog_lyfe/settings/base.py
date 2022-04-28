@@ -205,4 +205,4 @@ REST_FRAMEWORK = {
 
 # # Add these at the very last line of settings.py to fix ssl problem if it happened 
 # options = DATABASES['default'].get('OPTIONS', {})
-# options.pop('sslmode', None)
+# options.pop('sslmode', None) 
